@@ -15,7 +15,7 @@ sub tree {
   my ($self, $path) = @_;
 
   return $self unless $path;
-  $self->printer($path . $self->{open_dir_symbol})
+  $self->printer($path)
        ->deep_read($path);
 }
 
@@ -34,7 +34,7 @@ sub say_modify_name {
   my ($self, $name) = @_;
 
   $name =~ /^(.+)\/((?:.(?!\/))+$)/;
-  $self->printer(' ' x length($1) . $2 . $self->{open_dir_symbol});
+  $self->printer(' ' x length($1) . $2);
   return $self;
 }
 
@@ -47,7 +47,7 @@ sub read_dir {
 
 sub printer {
   my ($self, $msg) = @_;
-  say $msg;
+  say $msg . $self->{open_dir_symbol};
   return $self;
 }
 
